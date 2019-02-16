@@ -1,9 +1,12 @@
-import DSformatting
+from DSformatting import *
+import torch.nn.functional as F
 
+import os
 
-path = 'path-to-dataset'
-save_root = 'path-to-store-txt-raw-data'
+path = r'C:\Users\Copo\source\\repos\GestureRecognition\GestureRecognition_MYO\EMG_data_for_gestures-master\EMG_data_for_gestures-master'
+save_root = r'C:\Users\Copo\source\\repos\GestureRecognition\GestureRecognition_MYO\CustomDataset\\txts'
 
+create_dataset_dirs(save_root)
 # get all the txt files in the raw data
 files = [y for x in os.walk(path) for y in glob.glob(os.path.join(x[0], '*.txt'))]
 # runs over all files and saves each processed sample to create the custom dataset
@@ -14,8 +17,8 @@ for file in files[1:]:
         k = k+2
 
 
-raw_ds_path = 'same-as-as-save-root-above'
-processed_ds_path = 'path-to-training-data'
+raw_ds_path = r'C:\Users\Copo\source\\repos\GestureRecognition\GestureRecognition_MYO\CustomDataset\\txts'
+processed_ds_path = r'C:\Users\Copo\source\\repos\GestureRecognition\GestureRecognition_MYO\CustomDataset\processed'
 # create folders to store training samples (data and labels) for each label
 create_dataset_dirs(processed_ds_path)
 print(glob.glob(os.path.join(processed_ds_path,'*')))
